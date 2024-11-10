@@ -13,7 +13,7 @@
         </ul>
     </div>
 @endif
-<form action="{{ route('films.store') }}" method="POST">
+<form action="{{ route('films.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="titolo">Titolo:</label>
     <input type="text" id="titolo" name="titolo" value="{{ old('titolo') }}" required>
@@ -26,6 +26,9 @@
     <br>
     <label for="descrizione">Descrizione:</label>
     <textarea id="descrizione" name="descrizione">{{ old('descrizione') }}</textarea>
+    <br>
+    <label for="immagine_copertina">Immagine di Copertina:</label>
+    <input type="file" id="immagine_copertina" name="immagine_copertina">
     <br>
     <button type="submit">Salva</button>
 </form>

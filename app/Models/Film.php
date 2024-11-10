@@ -13,6 +13,11 @@ class Film extends Model
         'titolo',
         'regista',
         'durata',
-        'descrizione'
+        'descrizione',
+        'immagine_copertina'
     ];
+
+    public function programmazioni() {
+        return $this->hasMany(Programmazione::class);
+    }
 }

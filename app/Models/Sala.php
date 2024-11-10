@@ -13,4 +13,8 @@ class Sala extends Model
         'nome',
         'capienza'
     ];
+
+    public function programmazioni() {
+        return $this->hasMany(Programmazione::class);
+    }
 }

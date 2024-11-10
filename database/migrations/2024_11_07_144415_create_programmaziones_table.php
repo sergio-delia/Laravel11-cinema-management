@@ -17,12 +17,12 @@ return new class extends Migration
             $table->unsignedBigInteger('sala_id');
             $table->date('data_inizio');
             $table->date('data_fine');
-            $table->time('orario');
             $table->timestamps();
 
             $table->foreign('film_id')->references('id')->on('films')->onDelete('cascade');
             $table->foreign('sala_id')->references('id')->on('salas')->onDelete('cascade');
         });
+
 
     }
 

@@ -7,6 +7,7 @@
 <a href="{{ route('films.create') }}">Aggiungi Nuovo Film</a>
 <table>
     <tr>
+        <th>Copertina</th>
         <th>Titolo</th>
         <th>Regista</th>
         <th>Durata</th>
@@ -14,6 +15,11 @@
     </tr>
     @foreach ($films as $film)
     <tr>
+        <td>
+            @if ($film->immagine_copertina)
+                <img src="{{ asset('images/' . $film->immagine_copertina) }}" alt="{{ $film->titolo }}" width="50">
+            @endif
+        </td>
         <td>{{ $film->titolo }}</td>
         <td>{{ $film->regista }}</td>
         <td>{{ $film->durata }} minuti</td>

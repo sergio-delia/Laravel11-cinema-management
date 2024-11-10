@@ -30,11 +30,19 @@ class FilmController extends Controller
             'regista' => 'required|max:255',
             'durata' => 'required|integer|min:1',
             'descrizione' => 'nullable|string',
+            'immagine_copertina' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
+        if ($request->hasFile('immagine_copertina')) {
+            $imageName = time().'.'.$request->immagine_copertina->extension();
+            $request->immagine_copertina->move(public_path('images'), $imageName);
+            $validated['immagine_copertina'] = $imageName;
+        }
+
         Film::create($validated);
-        return redirect()->route('films.index');
+        return redirect()->route('films.index')->with('success', 'Film aggiunto con successo');
     }
+
 
     public function update(Request $request, Film $film) {
         $validated = $request->validate([
@@ -42,7 +50,14 @@ class FilmController extends Controller
             'regista' => 'required|max:255',
             'durata' => 'required|integer|min:1',
             'descrizione' => 'nullable|string',
+            'immagine_copertina' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        if ($request->hasFile('immagine_copertina')) {
+            $imageName = time().'.'.$request->immagine_copertina->extension();
+            $request->immagine_copertina->move(public_path('images'), $imageName);
+            $validated['immagine_copertina'] = $imageName;
+        }
 
         $film->update($validated);
         return redirect()->route('films.index');
